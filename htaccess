@@ -1,0 +1,13 @@
+# see https://devops.profitbricks.com/tutorials/install-and-configure-mod_rewrite-for-apache-on-centos-7/
+# see https://docs.djangoproject.com/en/1.8/howto/deployment/fastcgi/
+# see https://docs.djangoproject.com/en/1.8/howto/deployment/fastcgi/#apache-shared-hosting
+
+AddHandler fcgid-script .fcgi .py
+#SetHandler fcgid-script
+Options +ExecCGI
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_URI} !^(/.*)+app.py/
+RewriteRule ^(.*)$ basesite.fcgi/$1 [QSA,L]
+#RewriteRule ^(.*)$ app.py/$1 [PT]
